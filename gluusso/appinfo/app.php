@@ -70,6 +70,11 @@
 			];
 		});
 	}
+
+	// Do not parse request URI if running in console as that will cause a crash in getPathInfo()
+	if (is_defined('OC_CONSOLE') && OC_CONSOLE) {
+		return;
+	}
 	
 	$userSession = \OC::$server->getUserSession();
 	$urlGenerator = \OC::$server->getURLGenerator();
